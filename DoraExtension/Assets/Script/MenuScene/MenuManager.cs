@@ -70,6 +70,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private ChargeDataBND chargeDataBND;
 
+    [Header("Práctica")] 
+    [SerializeField] private GameObject startPracticePanel;
+    [SerializeField] private GameObject endPracticePanel;
+
     public void Inicio()//Cambia a menú inicio
     {
         headerBar.GetComponent<HeaderBar>().MoverBarra(inicioText.transform.position, -10f);
@@ -317,6 +321,19 @@ public class MenuManager : MonoBehaviour
             progressItem[i].transform.GetChild(9).GetComponent<TMP_Text>().text = (text+" min");
         }
     }
+
+    public void IniciarPractica()
+    {
+        StartCoroutine(PracticaEnProceso());
+    }
+
+    public IEnumerator PracticaEnProceso()
+    {
+        yield return new WaitForSeconds(120.0f);
+        startPracticePanel.SetActive(false);
+        endPracticePanel.SetActive(true);
+    }
+    
     
 
 }
