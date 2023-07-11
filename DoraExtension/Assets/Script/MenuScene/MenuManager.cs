@@ -122,6 +122,20 @@ public class MenuManager : MonoBehaviour
         if (bgContainer.GetComponent<SelectedAvatar>().selectedAvatar!=null&&avatarContainer.GetComponent<SelectedAvatar>().selectedAvatar!=null)
         {
             chargeDataBND.SetFirstAvatar(bgContainer.GetComponent<SelectedAvatar>().selectedName,avatarContainer.GetComponent<SelectedAvatar>().selectedName);
+            foreach (var picture in spritesBG)
+            {
+                if (bgContainer.GetComponent<SelectedAvatar>().selectedName==picture.name)
+                {
+                    profileBG.GetComponent<Image>().sprite = picture;
+                }
+            }
+            foreach (var picture in spritesAvatar)
+            {
+                if (avatarContainer.GetComponent<SelectedAvatar>().selectedName==picture.name)
+                {
+                    profileAvatar.GetComponent<Image>().sprite = picture;
+                }
+            }
             welcomeOnce.SetActive(false);
             ChargeHeader();
         }else{ //Muestra mensaje de error en toast.
