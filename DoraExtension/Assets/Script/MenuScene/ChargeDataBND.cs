@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -31,6 +32,8 @@ public class ChargeDataBND : MonoBehaviour
 
     [Header("Referenncias")] 
     [SerializeField] private MenuManager menuManager;
+
+    [SerializeField] private CSVManager csvManager;
 
     private void Start()
     {
@@ -188,6 +191,39 @@ public class ChargeDataBND : MonoBehaviour
         secureForm.AddField("_id", _id);
         secureForm.AddField("notify2", "false");
         UnityWebRequest www = UnityWebRequest.Post(host+"user/updateData",secureForm);
+        yield return www.SendWebRequest();
+        string temp = www.downloadHandler.text;
+        var x = JsonUtility.FromJson<userClass>(temp);
+        if (www.error == null)
+        {
+            // Debug.Log(temp);
+        }
+        else
+        {
+            //Debug.Log(temp);
+        }
+    }
+    
+    [ContextMenu("Leer Json22")]
+    public void SaveCSV()
+    {
+        
+        DateTime dt=DateTime.Now;
+        var fecha = dt.ToString("dd-MM-yyyy"); 
+        StartCoroutine(SaveCSV2(fecha));
+    }
+    
+    public IEnumerator SaveCSV2(string fecha)
+    {
+        secureForm = new WWWForm();
+        
+        secureForm.AddField("artro", csvManager.file1);
+        secureForm.AddField("palpa", csvManager.file2);
+        secureForm.AddField("target", csvManager.file3);
+        secureForm.AddField("timer", csvManager.file4);
+        secureForm.AddField("fecha", fecha);
+        secureForm.AddField("user", _id);
+        UnityWebRequest www = UnityWebRequest.Post(host+"data/create",secureForm); 
         yield return www.SendWebRequest();
         string temp = www.downloadHandler.text;
         var x = JsonUtility.FromJson<userClass>(temp);

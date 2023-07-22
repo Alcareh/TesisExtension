@@ -313,7 +313,7 @@ public class MenuManager : MonoBehaviour
         for (int i = 0; i < data.Length; i++)
         {
             progressItem[i].SetActive(true);
-            progressItem[i].transform.GetChild(6).GetComponent<TMP_Text>().text = data[i].fecha; //tengo que arreglar este formato no sé porque dice año 0001 cuando es 2001
+            progressItem[i].transform.GetChild(6).GetComponent<TMP_Text>().text = data[i].fecha;
             progressItem[i].transform.GetChild(7).GetComponent<TMP_Text>().text = data[i].lvl;
             progressItem[i].transform.GetChild(8).GetComponent<TMP_Text>().text = data[i].puntos.ToString();
             TimeSpan time = TimeSpan.FromSeconds(data[i].tiempo);
