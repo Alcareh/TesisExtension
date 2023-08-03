@@ -204,7 +204,7 @@ public class ChargeDataBND : MonoBehaviour
         }
     }
     
-    [ContextMenu("Leer Json22")]
+    //[ContextMenu("Leer Json22")]
     public void SaveCSV()
     {
         

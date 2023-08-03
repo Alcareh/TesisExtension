@@ -11,7 +11,7 @@ public class CSVManager : MonoBehaviour
     public string file3;
     public string file4;
     
-    [ContextMenu("Leer Json")]
+    //[ContextMenu("Leer Json")]
     public void BuscarCSV()
     {
         var path = getPath();
